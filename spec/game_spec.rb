@@ -16,6 +16,9 @@ describe Game do
     it 'returns winning message right after move' do
       expect(winning_scenario1).to eq "#{player1.name} won"
     end
+    it 'returns draw message right after last move' do
+      expect(draw).to eq 'draw'
+    end
   end
   describe '#game_over' do
     it 'returns a winning message for 1st scenario' do
@@ -50,7 +53,10 @@ describe Game do
       winning_scenario8
       expect(game.game_over(player1)).to eq "#{player1.name} won"
     end
-
+    it 'returns draw message' do
+      draw
+      expect(game.game_over(player2)).to eq 'draw'
+    end
   end
   def winning_scenario1
     game.move(game.player1, 1)
@@ -91,5 +97,16 @@ describe Game do
     game.move(game.player1, 3)
     game.move(game.player1, 5)
     game.move(game.player1, 7)
+  end
+  def draw
+    game.move(game.player1, 1)
+    game.move(game.player2, 2)
+    game.move(game.player1, 3)
+    game.move(game.player2, 5)
+    game.move(game.player1, 7)
+    game.move(game.player2, 4)
+    game.move(game.player1, 6)
+    game.move(game.player2, 9)
+    game.move(game.player1, 8)
   end
 end
