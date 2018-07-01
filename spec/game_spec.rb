@@ -13,12 +13,6 @@ describe Game do
       game.move(1, game.player1)
       expect { game.move(1, game.player1) }.to raise_error 'hey, this field is taken'
     end
-    it 'returns winning message right after move' do
-      expect(winning_scenario1).to eq "#{player1.name} won"
-    end
-    it 'returns draw message right after last move' do
-      expect(draw).to eq 'draw'
-    end
   end
   describe '#game_over' do
     it 'returns a winning message for 1st scenario' do
@@ -59,10 +53,16 @@ describe Game do
     end
   end
   describe '#swap players' do
-    it 'swaps player every turn' do
+    it 'swaps player after turn' do
       game.move(1)
       game.move(2)
       expect(game.board[1]).to eq 'O'
+    end
+    it 'swaps player back' do
+      game.move(1)
+      game.move(2)
+      game.move(3)
+      expect(game.board[2]).to eq 'X'
     end
   end
   def winning_scenario1

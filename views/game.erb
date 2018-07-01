@@ -1,2 +1,157 @@
-<%= @game.player1.name %>
-<%= @game.player2.name %>
+<div align='center'>
+<table id="board">
+  <h1><%= @game.player1.name %> vs <%= @game.player2.name %></h1>
+<tr>
+<td>
+  <div align='center'>
+    <% if @game.board[0] == " " %>
+      <form action="/move" method="post">
+        <label for="field">
+          Make your move here
+          <input type="hidden" name="field" value=1 />
+          <input type="submit" value="Place">
+        </label>
+      </form>
+    <%else%>
+      <%= @game.board[0] %>
+    <%end%>
+    </div>
+    </td>
+<td>
+  <div align='center'>
+    <% if @game.board[1] == " " %>
+      <form action="/move" method="post">
+        <label for="field">
+          Make your move here
+          <input type="hidden" name="field" value='2'>
+          <input type="submit" value="Place">
+        </label>
+      </form>
+    <%else%>
+      <%= @game.board[1] %>
+    <%end%>
+  </div>
+  </td>
+<td>
+  <div align='center'>
+    <% if @game.board[2] == " " %>
+      <form action="/move" method="post">
+        <label for="field">
+          Make your move here
+          <input type="hidden" name="field" value='3'>
+          <input type="submit" value="Place">
+        </label>
+      </form>
+    <%else%>
+      <%= @game.board[2] %>
+    <%end%>
+  </div>
+  </td>
+  </tr>
+<tr>
+<td>
+  <div align='center'>
+    <% if @game.board[3] == " " %>
+      <form action="/move" method="post">
+        <label for="field">
+          Make your move here
+          <input type="hidden" name="field" value='4'>
+          <input type="submit" value="Place">
+        </label>
+      </form>
+    <%else%>
+      <%= @game.board[3] %>
+    <%end%>
+  </div>
+  </td>
+<td>
+  <div align='center'>
+    <% if @game.board[4] == " " %>
+      <form action="/move" method="post">
+        <label for="field">
+          Make your move here
+          <input type="hidden" name="field" value='5'>
+          <input type="submit" value="Place">
+        </label>
+      </form>
+    <%else%>
+      <%= @game.board[4] %>
+    <%end%>
+  </div>
+  </td>
+<td>
+  <div align='center'>
+    <% if @game.board[5] == " " %>
+      <form action="/move" method="post">
+        <label for="move">
+          Make your move here
+          <input type="hidden" name="field" value='6'>
+          <input type="submit" value="Place">
+        </label>
+      </form>
+    <%else%>
+      <%= @game.board[5] %>
+    <%end%>
+  </div>
+  </td>
+  </tr>
+<tr>
+<td>
+  <div align='center'>
+    <% if @game.board[6] == " " %>
+      <form action="/move" method="post">
+        <label for="field">
+          Make your move here
+          <input type="hidden" name="field" value='7'>
+          <input type="submit" value="Place">
+        </label>
+      </form>
+    <%else%>
+      <%= @game.board[6] %>
+    <%end%>
+  </div>
+  </td>
+<td>
+  <div align='center'>
+    <% if @game.board[7] == " " %>
+      <form action="/move" method="post">
+        <label for="field">
+          Make your move here
+          <input type="hidden" name="field" value='8'>
+          <input type="submit" value="Place">
+        </label>
+      </form>
+    <%else%>
+      <%= @game.board[7] %>
+    <%end%>
+  </div>
+  </td>
+<td>
+  <div align='center'>
+    <% if @game.board[8] == " " %>
+      <form action="/move" method="post">
+        <label for="field">
+          Make your move here
+          <input type="hidden" name="field" value='9'>
+          <input type="submit" value="Place">
+        </label>
+      </form>
+    <%else%>
+      <%= @game.board[8] %>
+    <%end%>
+  </div>
+  </td>
+  </tr>
+</table>
+<% if @game.game_over(@game.player1) != false %>
+  <%= @game.game_over(@game.player1) %>
+  <form action="/">
+    <input type="submit" value="Restart">
+  </form>
+<% elsif @game.game_over(@game.player2) != false %>
+  <%= @game.game_over(@game.player2) %>
+  <form action="/">
+    <input type="submit" value="Restart">
+  </form>
+<%end%>
+</div>

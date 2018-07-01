@@ -16,7 +16,7 @@ class Game
     else
       raise 'hey, this field is taken'
     end
-    game_over(player)
+    player_swap
   end
 
   def game_over(player)
@@ -24,10 +24,20 @@ class Game
       return "#{player.name} won"
     elsif board.include?(" ") == false
       return 'draw'
+    else
+      false
     end
   end
 
   private
+
+  def player_swap
+    if current_player == player1
+      @current_player = player2
+    else
+      @current_player = player1
+    end
+  end
 
   def win?(player)
     results = winning_scenarios.map { |scenario| check(scenario, player.mark) }

@@ -18,4 +18,10 @@ class NoughtsAndCrosses < Sinatra::Base
     @game = session[:game]
     erb(:game)
   end
+
+  post '/move' do
+    @game = session[:game]
+    @game.move(params[:field].to_i)
+    redirect '/game'
+  end
 end
