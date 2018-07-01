@@ -1,14 +1,16 @@
 require_relative './player.rb'
 class Game
 
-  attr_reader :board, :player1, :player2
+  attr_reader :board, :player1, :player2, :current_player
 
   def initialize(player1, player2)
     @board = Array.new(9) { " " }
     @player1 = player1
     @player2 = player2
+    @current_player = player1
   end
-  def move(player, position)
+
+  def move(position, player = current_player)
     if board[position - 1] == " "
       board[position - 1] = player.mark
     else
@@ -16,6 +18,7 @@ class Game
     end
     game_over(player)
   end
+
   def game_over(player)
     if win?(player)
       return "#{player.name} won"

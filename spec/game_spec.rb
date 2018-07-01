@@ -6,12 +6,12 @@ describe Game do
 
   describe '#move' do
     it 'adds player choice to the board' do
-      game.move(game.player1, 1)
+      game.move(1, game.player1)
       expect(game.board[0]).to eq 'X'
     end
-    it 'raise an error if move already taken' do
-      game.move(game.player1, 1)
-      expect { game.move(game.player1, 1) }.to raise_error 'hey, this field is taken'
+    it 'raise an error if field already taken' do
+      game.move(1, game.player1)
+      expect { game.move(1, game.player1) }.to raise_error 'hey, this field is taken'
     end
     it 'returns winning message right after move' do
       expect(winning_scenario1).to eq "#{player1.name} won"
@@ -58,55 +58,62 @@ describe Game do
       expect(game.game_over(player2)).to eq 'draw'
     end
   end
+  describe '#swap players' do
+    it 'swaps player every turn' do
+      game.move(1)
+      game.move(2)
+      expect(game.board[1]).to eq 'O'
+    end
+  end
   def winning_scenario1
-    game.move(game.player1, 1)
-    game.move(game.player1, 2)
-    game.move(game.player1, 3)
+    game.move(1, game.player1)
+    game.move(2, game.player1)
+    game.move(3, game.player1)
   end
   def winning_scenario2
-    game.move(game.player1, 4)
-    game.move(game.player1, 5)
-    game.move(game.player1, 6)
+    game.move(4, game.player1)
+    game.move(5, game.player1)
+    game.move(6, game.player1)
   end
   def winning_scenario3
-    game.move(game.player1, 7)
-    game.move(game.player1, 8)
-    game.move(game.player1, 9)
+    game.move(7, game.player1)
+    game.move(8, game.player1)
+    game.move(9, game.player1)
   end
   def winning_scenario4
-    game.move(game.player1, 1)
-    game.move(game.player1, 4)
-    game.move(game.player1, 7)
+    game.move(1, game.player1)
+    game.move(4, game.player1)
+    game.move(7, game.player1)
   end
   def winning_scenario5
-    game.move(game.player1, 2)
-    game.move(game.player1, 5)
-    game.move(game.player1, 8)
+    game.move(2, game.player1)
+    game.move(5, game.player1)
+    game.move(8, game.player1)
   end
   def winning_scenario6
-    game.move(game.player1, 3)
-    game.move(game.player1, 6)
-    game.move(game.player1, 9)
+    game.move(3, game.player1)
+    game.move(6, game.player1)
+    game.move(9, game.player1)
   end
   def winning_scenario7
-    game.move(game.player1, 1)
-    game.move(game.player1, 5)
-    game.move(game.player1, 9)
+    game.move(1, game.player1)
+    game.move(5, game.player1)
+    game.move(9, game.player1)
   end
   def winning_scenario8
-    game.move(game.player1, 3)
-    game.move(game.player1, 5)
-    game.move(game.player1, 7)
+    game.move(3, game.player1)
+    game.move(5, game.player1)
+    game.move(7, game.player1)
   end
   def draw
-    game.move(game.player1, 1)
-    game.move(game.player2, 2)
-    game.move(game.player1, 3)
-    game.move(game.player2, 5)
-    game.move(game.player1, 7)
-    game.move(game.player2, 4)
-    game.move(game.player1, 6)
-    game.move(game.player2, 9)
-    game.move(game.player1, 8)
+    game.move(1, game.player1)
+    game.move(2, game.player2)
+    game.move(3, game.player1)
+    game.move(5, game.player2)
+    game.move(7, game.player1)
+    game.move(4, game.player2)
+    game.move(6, game.player1)
+    game.move(9, game.player2)
+    game.move(8, game.player1)
   end
 end
