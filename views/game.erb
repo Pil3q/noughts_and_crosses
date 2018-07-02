@@ -1,28 +1,40 @@
+<style>
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #eae7c2;
+  padding: 5px;
+  width: 50%;
+}
+.grid-item {
+  background-color: white;
+  border: 1px solid black;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  vertical-align: middle;
+}
+</style>
 <div align='center'>
-<table id="board">
   <h1><%= @game.player1.name %> vs <%= @game.player2.name %></h1>
-<tr>
-<td>
-  <div align='center'>
-    <% if @game.board[0] == " " %>
-      <form action="/move" method="post">
-        <label for="field">
-          Make your move here
-          <input type="hidden" name="field" value=1 />
-          <input type="submit" value="Place">
-        </label>
-      </form>
-    <%else%>
-      <%= @game.board[0] %>
-    <%end%>
+  <div class="grid-container">
+  <div class="grid-item">
+      <% if @game.board[0] == " " && @game.game_over(@game.player1) == false && @game.game_over(@game.player2) == false%>
+        <form action="/move" method="post">
+          <label for="field">
+
+            <input type="hidden" name="field" value=1 />
+            <input type="submit" value="Place">
+          </label>
+        </form>
+      <%else%>
+        <%= @game.board[0] %>
+      <%end%>
     </div>
-    </td>
-<td>
-  <div align='center'>
-    <% if @game.board[1] == " " %>
+  <div class="grid-item">
+    <% if @game.board[1] == " " && @game.game_over(@game.player1) == false && @game.game_over(@game.player2) == false%>
       <form action="/move" method="post">
         <label for="field">
-          Make your move here
           <input type="hidden" name="field" value='2'>
           <input type="submit" value="Place">
         </label>
@@ -31,13 +43,10 @@
       <%= @game.board[1] %>
     <%end%>
   </div>
-  </td>
-<td>
-  <div align='center'>
-    <% if @game.board[2] == " " %>
+  <div class="grid-item">
+    <% if @game.board[2] == " " && @game.game_over(@game.player1) == false && @game.game_over(@game.player2) == false%>
       <form action="/move" method="post">
         <label for="field">
-          Make your move here
           <input type="hidden" name="field" value='3'>
           <input type="submit" value="Place">
         </label>
@@ -46,15 +55,10 @@
       <%= @game.board[2] %>
     <%end%>
   </div>
-  </td>
-  </tr>
-<tr>
-<td>
-  <div align='center'>
-    <% if @game.board[3] == " " %>
+  <div class="grid-item">
+    <% if @game.board[3] == " " && @game.game_over(@game.player1) == false && @game.game_over(@game.player2) == false%>
       <form action="/move" method="post">
         <label for="field">
-          Make your move here
           <input type="hidden" name="field" value='4'>
           <input type="submit" value="Place">
         </label>
@@ -63,28 +67,22 @@
       <%= @game.board[3] %>
     <%end%>
   </div>
-  </td>
-<td>
-  <div align='center'>
-    <% if @game.board[4] == " " %>
-      <form action="/move" method="post">
-        <label for="field">
-          Make your move here
-          <input type="hidden" name="field" value='5'>
-          <input type="submit" value="Place">
-        </label>
-      </form>
-    <%else%>
-      <%= @game.board[4] %>
-    <%end%>
-  </div>
-  </td>
-<td>
-  <div align='center'>
-    <% if @game.board[5] == " " %>
+  <div class="grid-item">
+      <% if @game.board[4] == " " && @game.game_over(@game.player1) == false && @game.game_over(@game.player2) == false%>
+        <form action="/move" method="post">
+          <label for="field">
+
+            <input type="hidden" name="field" value='5'>
+            <input type="submit" value="Place">
+          </label>
+        </form>
+      <%else%>
+        <%= @game.board[4] %>
+      <%end%></div>
+  <div class="grid-item">
+    <% if @game.board[5] == " " && @game.game_over(@game.player1) == false && @game.game_over(@game.player2) == false%>
       <form action="/move" method="post">
         <label for="move">
-          Make your move here
           <input type="hidden" name="field" value='6'>
           <input type="submit" value="Place">
         </label>
@@ -93,15 +91,10 @@
       <%= @game.board[5] %>
     <%end%>
   </div>
-  </td>
-  </tr>
-<tr>
-<td>
-  <div align='center'>
-    <% if @game.board[6] == " " %>
+  <div class="grid-item">
+    <% if @game.board[6] == " " && @game.game_over(@game.player1) == false && @game.game_over(@game.player2) == false%>
       <form action="/move" method="post">
         <label for="field">
-          Make your move here
           <input type="hidden" name="field" value='7'>
           <input type="submit" value="Place">
         </label>
@@ -110,13 +103,10 @@
       <%= @game.board[6] %>
     <%end%>
   </div>
-  </td>
-<td>
-  <div align='center'>
-    <% if @game.board[7] == " " %>
+  <div class="grid-item">
+    <% if @game.board[7] == " " && @game.game_over(@game.player1) == false && @game.game_over(@game.player2) == false%>
       <form action="/move" method="post">
         <label for="field">
-          Make your move here
           <input type="hidden" name="field" value='8'>
           <input type="submit" value="Place">
         </label>
@@ -125,13 +115,10 @@
       <%= @game.board[7] %>
     <%end%>
   </div>
-  </td>
-<td>
-  <div align='center'>
-    <% if @game.board[8] == " " %>
+  <div class="grid-item">
+    <% if @game.board[8] == " " && @game.game_over(@game.player1) == false && @game.game_over(@game.player2) == false%>
       <form action="/move" method="post">
         <label for="field">
-          Make your move here
           <input type="hidden" name="field" value='9'>
           <input type="submit" value="Place">
         </label>
@@ -140,16 +127,14 @@
       <%= @game.board[8] %>
     <%end%>
   </div>
-  </td>
-  </tr>
-</table>
+</div>
 <% if @game.game_over(@game.player1) != false %>
-  <%= @game.game_over(@game.player1) %>
+  <br><h1><%= @game.game_over(@game.player1) %></h1>
   <form action="/">
     <input type="submit" value="Restart">
   </form>
 <% elsif @game.game_over(@game.player2) != false %>
-  <%= @game.game_over(@game.player2) %>
+  <br><h1><%= @game.game_over(@game.player2) %></h1>
   <form action="/">
     <input type="submit" value="Restart">
   </form>

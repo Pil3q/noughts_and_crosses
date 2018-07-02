@@ -1,0 +1,10 @@
+<div align='center'>
+  <h1> Who do you want to start? </h1>
+  <form action="/game">
+  <input type="submit" value="<%= @game.player1.name %>">
+  </form>
+  <br>
+  <form action="/player2" method="post">
+  <input type="submit" value="<%= @game.player2.name %>">
+  </form>
+</div>

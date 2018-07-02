@@ -1,7 +1,8 @@
 require_relative './player.rb'
 class Game
 
-  attr_reader :board, :player1, :player2, :current_player
+  attr_reader :board, :player1, :player2
+  attr_accessor :current_player
 
   def initialize(player1, player2)
     @board = Array.new(9) { " " }
@@ -29,8 +30,6 @@ class Game
     end
   end
 
-  private
-
   def player_swap
     if current_player == player1
       @current_player = player2
@@ -38,6 +37,8 @@ class Game
       @current_player = player1
     end
   end
+
+  private
 
   def win?(player)
     results = winning_scenarios.map { |scenario| check(scenario, player.mark) }
