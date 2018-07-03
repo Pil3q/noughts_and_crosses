@@ -1,18 +1,17 @@
 require_relative './player.rb'
 class Game
-
   attr_reader :board, :player1, :player2
   attr_accessor :current_player
 
   def initialize(player1, player2)
-    @board = Array.new(9) { " " }
+    @board = Array.new(9) { ' ' }
     @player1 = player1
     @player2 = player2
     @current_player = player1
   end
 
   def move(position, player = current_player)
-    if board[position - 1] == " "
+    if board[position - 1] == ' '
       board[position - 1] = player.mark
     else
       raise 'hey, this field is taken'
@@ -22,20 +21,20 @@ class Game
 
   def game_over(player)
     if win?(player)
-      return "#{player.name} won"
-    elsif board.include?(" ") == false
-      return 'draw'
+      "#{player.name} won"
+    elsif board.include?(' ') == false
+      'draw'
     else
       false
     end
   end
 
   def player_swap
-    if current_player == player1
-      @current_player = player2
-    else
-      @current_player = player1
-    end
+    @current_player = if current_player == player1
+                        player2
+                      else
+                        player1
+                      end
   end
 
   private
